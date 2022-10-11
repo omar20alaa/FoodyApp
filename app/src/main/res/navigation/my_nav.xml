@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/recipesFragment">
+
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="app.foody_app.ui.fragment.recipes.RecipesFragment"
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet2" />
+        <argument
+            android:name="backFromBottomSheet"
+            app:argType="boolean"
+            android:defaultValue="true"
+         />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteRecipesFragment"
+        android:name="app.foody_app.ui.fragment.FavouriteRecipes"
+        android:label="Favourite"
+        tools:layout="@layout/fragment_favourite_recipes" >
+        <action
+            android:id="@+id/action_favouriteRecipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodJokeFragment"
+        android:name="app.foody_app.ui.fragment.FoodJokeFragment"
+        android:label="Food Joke"
+        tools:layout="@layout/fragment_food_joke" />
+    <dialog
+        android:id="@+id/recipesBottomSheet2"
+        android:name="app.foody_app.ui.fragment.recipes.bottom_sheet.RecipesBottomSheet"
+        android:label="recipes_bottom_sheet"
+        tools:layout="@layout/recipes_bottom_sheet" >
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment"
+            app:popUpTo="@id/recipesFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="app.foody_app.ui.activity.DetailsActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_details" >
+        <argument
+            android:name="result"
+            app:argType="app.foody_app.models.Result" />
+    </activity>
+</navigation>
